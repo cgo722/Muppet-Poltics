@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://bbp4ym0a4a2x4"]
+
+[ext_resource type="PackedScene" uid="uid://cwqjnmsvrx5hf" path="res://Scene/Player/Player_Scene.tscn" id="1_xhtwi"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g6ejq"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xhtwi"]
+
+[sub_resource type="Sky" id="Sky_g6ejq"]
+sky_material = SubResource("ProceduralSkyMaterial_xhtwi")
+
+[sub_resource type="Environment" id="Environment_xhtwi"]
+background_mode = 2
+sky = SubResource("Sky_g6ejq")
+ambient_light_source = 3
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
+
+[node name="Node" type="Node"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(14.0541, 0, 0, 0, 0.366452, 0, 0, 0, 12.3786, 0, 0, 0)
+shape = SubResource("BoxShape3D_g6ejq")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D/CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="PlayerScene" parent="." instance=ExtResource("1_xhtwi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45904, 1.21875, 0.342066)
+SPEED = null
+JUMP_VELOCITY = null
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.0332773, 0.709939, -0.703476, 0, 0.703866, 0.710333, 0.999446, 0.0236379, -0.0234227, 0, 11.2248, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_xhtwi")
